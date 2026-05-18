@@ -1,0 +1,36 @@
+{% extends 'gabarit.twig' %}
+
+
+{% block title %}<h1>Nos Experts</h1>{% endblock %}
+
+{% block content %}
+<div class="alert alert-info">
+    Tadaaaa ! nos experts
+</div>
+
+
+    <!--grille-->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-5">
+
+        {% for expert in equipe %}
+            <div class="col">
+                <div class="card h-100">
+                    <figure class="figure bg-{{expert.civilite=='M'? 'info' : 'warning'}}">
+                        <img src="medias/{{ expert.initiale }}.png" class="card-img-top" alt="Photo de {{ expert.prenom }} {{ expert.nom }}">
+                    </figure>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ expert.prenom }} {{ expert.nom }}</h5>
+                        <ul>
+                            {% for domaine in expert.expertise %}
+                                <li>{{ domaine }}</li>
+                            {% endfor %}
+                        </ul>
+                        <a href="mailto:{{ expert.email }}" class="btn btn-primary">Contact</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
